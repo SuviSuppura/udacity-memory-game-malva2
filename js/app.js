@@ -1,4 +1,4 @@
- /*
+/*
   * Create a list that holds all of your cards
   */
  // array of cards
@@ -57,8 +57,11 @@ function generateStar(star) {
  }
 //show stars in the game
 showStars();
+//moves
+let moves = 0;
+let moveCounter = document.querySelector('.moves');
 
- function showStars(stars) {
+ function showStars(stars, moveCounter) {
   if (moveCounter == 8) {
       return stars[1,2,3];
       }
@@ -73,27 +76,12 @@ showStars();
  let allStars = document.querySelectorAll('.stars');
  allStars.innerHTML = stars;
 
-// replay button
+/* replay button
 var replay = document.querySelector('.fa fa-repeat');
 replay.addEventListener('click', function(e) {
   gameOn();
 });
-
-//Timer
-var time = 0;
-cards[i].addEventListener('click', function() {
-  if (!timer) {
-    startTimer();
-  }
-});
-
-function startTimer() {
-  timer = setInterval(function() {
-    if (openCards.length < 16) {
-      time++;
-      cosole.log(time);
-    };
-  });
+*/
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -108,11 +96,23 @@ function startTimer() {
  let allCards = document.querySelectorAll('.card');
  let openCards = [];
 
- //moves
-let moves = 0;
-let moveCounter = document.querySelector('.moves');
+/* //Timer
+ var time = 0;
+ openCards.addEventListener('click', function() {
+   if (!timer) {
+     startTimer();
+   }
+ });
 
-
+ function startTimer() {
+   timer = setInterval(function() {
+     if (openCards.length < 16) {
+       time++;
+       cosole.log(time);
+       }
+     });
+   };
+*/
 allCards.forEach(function(card) {
    card.addEventListener('click', function(e) {
      if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
