@@ -43,45 +43,48 @@ function gameOn() {
   });
 //place the cards to the html
   deck.innerHTML = cardHTML.join('');
-
 }
 // Play the game
 gameOn();
-
 //stars array
-let stars = ['fa-star', 'fa-star', 'fa-star'];
-
+/*let stars = ['fa-star', 'fa-star', 'fa-star'];
 //generates the stars to the game
 function generateStar(star) {
- return `<li><i class="fa ${stars}"></i></li>`;
+ return `<li><i class="fa ${star}"></i></li>`;
  }
-//show stars in the game
-showStars();
+ generateStar();
 //moves
-let moves = 0;
-let moveCounter = document.querySelector('.moves');
-
- function showStars(stars, moveCounter) {
-  if (moveCounter == 8) {
+ let moveCounter = document.querySelector('.moves');
+ //show stars in the game
+ showStars();
+ function showStars(stars, moveCounter,openCards) {
+    openCards.addEventListener('click', function(e) {
+      //adds moves
+      moveCounter +- 1;
+      //moves.innerHTML = moveCounter;
+      if (moveCounter.innerHTML <= 8) {
       return stars[1,2,3];
-      }
-      else if (moveCounter > 8 || moveCounter < 12) {
+        }
+      else if (moveCounter.innerHTML >= 9) {
           return stars[1,2];
-      }
-      else if (moveCounter > 12) {
+        }
+      else if (moveCounter.innerHTML >= 12) {
         return stars[1];
         }
-    }
+      });
+      //let allStars = document.querySelectorAll('.stars');
 
- let allStars = document.querySelectorAll('.stars');
- allStars.innerHTML = stars;
+}
+*/
 
-/* replay button
-var replay = document.querySelector('.fa fa-repeat');
+
+
+
+//replay button
+let replay = document.querySelector('.fa-repeat');
 replay.addEventListener('click', function(e) {
   gameOn();
 });
-*/
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -96,8 +99,8 @@ replay.addEventListener('click', function(e) {
  let allCards = document.querySelectorAll('.card');
  let openCards = [];
 
-/* //Timer
- var time = 0;
+//Timer
+/* var time = 0;
  openCards.addEventListener('click', function() {
    if (!timer) {
      startTimer();
@@ -113,14 +116,12 @@ replay.addEventListener('click', function(e) {
      });
    };
 */
+
 allCards.forEach(function(card) {
    card.addEventListener('click', function(e) {
      if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
        openCards.push(card);
        card.classList.add('open', 'show');
-       //adds moves
-       moveCounter +- 1;
-       moves.innerHTML = moveCounter;
       // if cards match leave them open
            if (openCards.length == 2) {
                if (openCards[0].dataset.card == openCards[1].dataset.card) {
