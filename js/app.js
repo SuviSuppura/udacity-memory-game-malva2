@@ -1,4 +1,4 @@
-/*
+ /*
   * Create a list that holds all of your cards
   */
  // array of cards
@@ -10,7 +10,6 @@
               'fa-anchor', 'fa-anchor',
               'fa-leaf', 'fa-leaf',
               'fa-bicycle', 'fa-bicycle'];
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -46,46 +45,10 @@ function gameOn() {
 }
 // Play the game
 gameOn();
-//stars array
-/*let stars = ['fa-star', 'fa-star', 'fa-star'];
-//generates the stars to the game
-function generateStar(star) {
- return `<li><i class="fa ${star}"></i></li>`;
- }
- generateStar();
-//moves
- let moveCounter = document.querySelector('.moves');
- //show stars in the game
- showStars();
- function showStars(stars, moveCounter,openCards) {
-    openCards.addEventListener('click', function(e) {
-      //adds moves
-      moveCounter +- 1;
-      //moves.innerHTML = moveCounter;
-      if (moveCounter.innerHTML <= 8) {
-      return stars[1,2,3];
-        }
-      else if (moveCounter.innerHTML >= 9) {
-          return stars[1,2];
-        }
-      else if (moveCounter.innerHTML >= 12) {
-        return stars[1];
-        }
-      });
-      //let allStars = document.querySelectorAll('.stars');
-
-}
-*/
-
-
-
-
-//replay button
-let replay = document.querySelector('.fa-repeat');
-replay.addEventListener('click', function(e) {
-  gameOn();
-});
-
+// Checking if the flipped cards match
+checkingCards();
+// Stars
+showStars();
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -96,26 +59,13 @@ replay.addEventListener('click', function(e) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
- let allCards = document.querySelectorAll('.card');
- let openCards = [];
 
-//Timer
-/* var time = 0;
- openCards.addEventListener('click', function() {
-   if (!timer) {
-     startTimer();
-   }
- });
-
- function startTimer() {
-   timer = setInterval(function() {
-     if (openCards.length < 16) {
-       time++;
-       cosole.log(time);
-       }
-     });
-   };
-*/
+function checkingCards() {
+  let allCards = document.querySelectorAll('.card');
+  let openCards = [];
+  let moves = document.querySelector('.moves');
+  let moveCounter = 0;
+  moves.innerHTML = moveCounter;
 
 allCards.forEach(function(card) {
    card.addEventListener('click', function(e) {
@@ -145,13 +95,86 @@ allCards.forEach(function(card) {
 
               }, 1000);
             }
+            moveCounter++;
+            moves.innerHTML = moveCounter;
           }
         }
+
+
+        //if (openCards.length == 16) {
+          //allCardsMatch();
+        //}
   });
-  // allCardsMatch(card, openCards);
-  /*function allCardsMatch () {
-     card = openCards[16];
-    if (card.classList.contains('open') && card.classList.contains('show') && card.classList.contains('match')) {
-        //modal??
-   }*/
+  let time = document.querySelector('.time_spent');
+  let timeSpent = 0;
+
+  card.addEventListener('click', function() {
+      if (!timer) {
+          startTimer();
+        }
+      });
+
+  function startTimer() {
+      timer = setInterval(function() {
+        if (openCards.length < 16) {
+            time++;
+        time_spent.innerHTML = time;
+          }
+        });
+    };
 });
+}
+
+
+function allCardsMatch () {
+      modal.style.display = "block";
+     }
+
+
+
+let stars = document.querySelectorAll('.stars');
+
+function showStars(moveCounter) {
+    if (moveCounter == 4) {
+        return stars.innerHTML = stars.removeChild(stars.children[0]);
+           }
+    else if (moveCounter == 6) {
+        return stars.innerHTML = stars.removeChild(stars.children[0]);
+           }
+       };
+
+//replay
+let replay = document.querySelector('.fa-repeat');
+replay.addEventListener('click', function(e) {
+gameOn();
+checkingCards();
+});
+
+
+// Get the modal
+let modal = document.querySelector('.modal');
+let time_results = document.querySelector('.time_results');
+let move_results = document.querySelector('.move_results');
+let stars_results = document.querySelector('.stars_results');
+// Get the button that opens the modal
+//var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+//var span = document.getElementsByClassName("close")[0];
+
+ //When the user clicks on the button, open the modal
+//btn.onclick = function() {
+  //modal.style.display = "block";
+//}
+
+// When the user clicks on <span> (x), close the modal
+//span.onclick = function() {
+  //modal.style.display = "none";
+//}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
