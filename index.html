@@ -16,9 +16,13 @@
         </header>
 
         <section class="score-panel">
-        	<ul class="stars"></ul>
-
-        	<span class="moves"</span> Moves
+          <ul class="stars">
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+          </ul>
+        	<span class="moves"></span> Moves
+          <label id="minutes">00</label>:<label id="seconds">00</label>
 
             <div class="restart">
         		<i class="fa fa-repeat"></i>
@@ -27,16 +31,18 @@
 
         <ul class="deck"></ul>
     </div>
-    <!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
 
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<div id="game_modal" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
+    <h4>Congratulations!</h4>
+    <h5>Game results: </h5>
+    <p>Time:<span class="time_results"></span></p>
+    <p>Moves:<span class="moves_results"></span></p>
+    <p>Stars:<span class="stars_results"></span></p>
     <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
   </div>
 
 </div>
