@@ -67,6 +67,7 @@ function checkingCards() {
   let moveCounter = 0;
   moves.innerHTML = moveCounter;
 
+
 allCards.forEach(function(card) {
    card.addEventListener('click', function(e) {
      if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
@@ -97,41 +98,57 @@ allCards.forEach(function(card) {
             }
             moveCounter++;
             moves.innerHTML = moveCounter;
+
+          }
+          else if (openCards.length == 16) {
+              console.log("hello");
+              allCardsMatch();
+            }
+
+        }
+
+
+  });
+
+//timer
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+
+card.addEventListener('click', function(e) {
+  if (openCards.length == 1) {
+      setInterval(setTime, 1000);
+    }
+});
+
+        function setTime() {
+          ++totalSeconds;
+          secondsLabel.innerHTML = pad(totalSeconds % 60);
+          minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+        }
+
+        function pad(val) {
+          var valString = val + "";
+          if (valString.length < 2) {
+            return "0" + valString;
+          } else {
+            return valString;
           }
         }
 
 
-        //if (openCards.length == 16) {
-          //allCardsMatch();
-        //}
-  });
-  let time = document.querySelector('.time_spent');
-  let timeSpent = 0;
-
-  card.addEventListener('click', function() {
-      if (!timer) {
-          startTimer();
-        }
       });
 
-  function startTimer() {
-      timer = setInterval(function() {
-        if (openCards.length < 16) {
-            time++;
-        time_spent.innerHTML = time;
-          }
-        });
-    };
-});
-}
+};
 
 
+//modal
 function allCardsMatch () {
       modal.style.display = "block";
      }
 
 
-
+//stars
 let stars = document.querySelectorAll('.stars');
 
 function showStars(moveCounter) {
@@ -139,7 +156,7 @@ function showStars(moveCounter) {
         return stars.innerHTML = stars.removeChild(stars.children[0]);
            }
     else if (moveCounter == 6) {
-        return stars.innerHTML = stars.removeChild(stars.children[0]);
+        return stars.innerHTML = stars.removeChild(stars.children[1]);
            }
        };
 
@@ -156,21 +173,7 @@ let modal = document.querySelector('.modal');
 let time_results = document.querySelector('.time_results');
 let move_results = document.querySelector('.move_results');
 let stars_results = document.querySelector('.stars_results');
-// Get the button that opens the modal
-//var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
-//var span = document.getElementsByClassName("close")[0];
-
- //When the user clicks on the button, open the modal
-//btn.onclick = function() {
-  //modal.style.display = "block";
-//}
-
-// When the user clicks on <span> (x), close the modal
-//span.onclick = function() {
-  //modal.style.display = "none";
-//}
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -178,3 +181,4 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
