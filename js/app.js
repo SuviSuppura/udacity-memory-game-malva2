@@ -47,8 +47,7 @@ function gameOn() {
 gameOn();
 // Checking if the flipped cards match
 checkingCards();
-// Stars
-showStars();
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -66,6 +65,27 @@ function checkingCards() {
   let moves = document.querySelector('.moves');
   let moveCounter = 0;
   moves.innerHTML = moveCounter;
+  let timer = setInterval(setTime, 1000);
+
+  // Stars
+
+
+  function showStars() {
+    //let starOne = document.querySelector('.fa-star');
+    //let starTwo = document.querySelector('.fa-star');
+    //let starThree = document.querySelector('.fa-star');
+    let stars = document.querySelector('.stars');
+    if (moveCounter == 4) {
+      stars.removeChild(stars.lastElementChild);
+    } else if (moveCounter == 8) {
+      stars.removeChild(stars.lastElementChild);
+    }
+    //let starsArray = [starOne, starTwo, starThree];
+    //console.log(starsArray);
+      //if (moveCounter === 2) {
+        //  return stars.innerHTML = starsArray;
+          //   }
+         };
 
 
 allCards.forEach(function(card) {
@@ -86,7 +106,12 @@ allCards.forEach(function(card) {
 
                   openCards = [];
 
-                } else {
+                }
+                else if (openCards[16]) {
+                    console.log("hello");
+                    clearInterval(timer);
+                    allCardsMatch();
+                  } else {
                 //if cards don't macth Hide
                     setTimeout(function() {
                       openCards.forEach(function(card) {
@@ -98,28 +123,20 @@ allCards.forEach(function(card) {
             }
             moveCounter++;
             moves.innerHTML = moveCounter;
-
+            showStars(moveCounter);
           }
-          else if (openCards.length == 16) {
-              console.log("hello");
-              allCardsMatch();
-            }
 
         }
 
-
   });
+
+
+});
 
 //timer
 var minutesLabel = document.getElementById("minutes");
 var secondsLabel = document.getElementById("seconds");
 var totalSeconds = 0;
-
-card.addEventListener('click', function(e) {
-  if (openCards.length == 1) {
-      setInterval(setTime, 1000);
-    }
-});
 
         function setTime() {
           ++totalSeconds;
@@ -137,7 +154,7 @@ card.addEventListener('click', function(e) {
         }
 
 
-      });
+      //});
 
 };
 
@@ -145,20 +162,19 @@ card.addEventListener('click', function(e) {
 //modal
 function allCardsMatch () {
       modal.style.display = "block";
+      gameOver();
      }
+     // Get the modal
+     let modal = document.querySelector('.modal');
+     let time_results = document.querySelector('.time_results');
+     let move_results = document.querySelector('.move_results');
+     let stars_results = document.querySelector('.stars_results');
 
-
-//stars
-let stars = document.querySelectorAll('.stars');
-
-function showStars(moveCounter) {
-    if (moveCounter == 4) {
-        return stars.innerHTML = stars.removeChild(stars.children[0]);
-           }
-    else if (moveCounter == 6) {
-        return stars.innerHTML = stars.removeChild(stars.children[1]);
-           }
-       };
+     function gameOver(totalSeconds, moves, starsArray){
+     time_results.innerHTML = totalSeconds;
+     move_results.innerHTML = moves;
+     stars_results.innerHTML = starsArray;
+   }
 
 //replay
 let replay = document.querySelector('.fa-repeat');
@@ -168,11 +184,7 @@ checkingCards();
 });
 
 
-// Get the modal
-let modal = document.querySelector('.modal');
-let time_results = document.querySelector('.time_results');
-let move_results = document.querySelector('.move_results');
-let stars_results = document.querySelector('.stars_results');
+
 
 
 // When the user clicks anywhere outside of the modal, close it
@@ -181,4 +193,3 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-
