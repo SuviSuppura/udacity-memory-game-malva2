@@ -107,12 +107,8 @@ allCards.forEach(function(card) {
                   openCards = [];
 
                 }
-                else if (openCards[16]) {
-                    console.log("hello");
-                    clearInterval(timer);
-                    allCardsMatch();
-                  } else {
-                //if cards don't macth Hide
+                else {
+                //if cards don't match -> Hide
                     setTimeout(function() {
                       openCards.forEach(function(card) {
                         card.classList.remove('open', 'show');
@@ -120,11 +116,17 @@ allCards.forEach(function(card) {
                 openCards = [];
 
               }, 1000);
+
             }
             moveCounter++;
             moves.innerHTML = moveCounter;
             showStars(moveCounter);
+
           }
+          else if (!openCards[2]) {
+              console.log("hello");
+              allCardsMatch();
+            }
 
         }
 
@@ -153,42 +155,39 @@ var totalSeconds = 0;
           }
         }
 
-
-      //});
-
 };
 
 
-//modal
-function allCardsMatch () {
-      modal.style.display = "block";
-      gameOver();
-     }
-     // Get the modal
-     let modal = document.querySelector('.modal');
-     let time_results = document.querySelector('.time_results');
-     let move_results = document.querySelector('.move_results');
-     let stars_results = document.querySelector('.stars_results');
 
-     function gameOver(totalSeconds, moves, starsArray){
-     time_results.innerHTML = totalSeconds;
-     move_results.innerHTML = moves;
-     stars_results.innerHTML = starsArray;
-   }
 
 //replay
 let replay = document.querySelector('.fa-repeat');
+
 replay.addEventListener('click', function(e) {
+clearInterval(timer);
 gameOn();
 checkingCards();
 });
 
 
-
+//modal
+function allCardsMatch (timer, moveCounter, stars) {
+      // Get the modal
+      let modal = document.querySelector('.modal');
+      let time_results = document.querySelector('.time_results');
+      let move_results = document.querySelector('.move_results');
+      let stars_results = document.querySelector('.stars_results');
+      modal.style.display = "block";
+      console.log(timer, moveCounter, stars);
+      clearInterval(timer);
+      time_results.innerHTML = timer;
+      move_results.innerHTML = moveCounter;
+      stars_results.innerHTML = stars;
+    }
 
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+window.onclick = function(event, modal) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
