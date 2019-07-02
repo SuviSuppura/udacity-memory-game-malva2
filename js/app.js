@@ -66,26 +66,19 @@ function checkingCards() {
   let moveCounter = 0;
   moves.innerHTML = moveCounter;
   let timer = setInterval(setTime, 1000);
+  let cardPair = 0;
+  let stars = document.querySelector('.stars');
 
   // Stars
 
 
   function showStars() {
-    //let starOne = document.querySelector('.fa-star');
-    //let starTwo = document.querySelector('.fa-star');
-    //let starThree = document.querySelector('.fa-star');
-    let stars = document.querySelector('.stars');
-    if (moveCounter == 4) {
+    if (moveCounter == 2) {
       stars.removeChild(stars.lastElementChild);
-    } else if (moveCounter == 8) {
+    } else if (moveCounter == 12) {
       stars.removeChild(stars.lastElementChild);
     }
-    //let starsArray = [starOne, starTwo, starThree];
-    //console.log(starsArray);
-      //if (moveCounter === 2) {
-        //  return stars.innerHTML = starsArray;
-          //   }
-         };
+};
 
 
 allCards.forEach(function(card) {
@@ -105,6 +98,7 @@ allCards.forEach(function(card) {
                   openCards[1].classList.add('show');
 
                   openCards = [];
+                  cardPair++;
 
                 }
                 else {
@@ -123,9 +117,8 @@ allCards.forEach(function(card) {
             showStars(moveCounter);
 
           }
-          else if (!openCards[2]) {
-              console.log("hello");
-              allCardsMatch();
+          else if (cardPair === 2) {
+              allCardsMatch(timer, minutesLabel, secondsLabel, moveCounter, stars);
             }
 
         }
@@ -171,17 +164,21 @@ checkingCards();
 
 
 //modal
-function allCardsMatch (timer, moveCounter, stars) {
+function allCardsMatch (timer, secondsLabel, minutesLabel, moveCounter, stars) {
       // Get the modal
+      console.log(moveCounter, stars, secondsLabel, minutesLabel);
+      clearInterval(timer);
       let modal = document.querySelector('.modal');
-      let time_results = document.querySelector('.time_results');
-      let move_results = document.querySelector('.move_results');
+      let seconds = secondsLabel;
+      let minutes = minutesLabel;
+      let time_results_minutes = document.querySelector('#time_results_minutes');
+      let time_results_seconds = document.querySelector('#time_results_seconds');
+      let moves_results = document.querySelector('.moves_results');
       let stars_results = document.querySelector('.stars_results');
       modal.style.display = "block";
-      console.log(timer, moveCounter, stars);
-      clearInterval(timer);
-      time_results.innerHTML = timer;
-      move_results.innerHTML = moveCounter;
+      moves_results.innerHTML = moveCounter;
+      time_results_minutes.innerHTML = minutes;
+      time_results_seconds.innerHTML = seconds;
       stars_results.innerHTML = stars;
     }
 
