@@ -70,15 +70,21 @@ function checkingCards() {
   let stars = document.querySelector('.stars');
 
   // Stars
-
-
-  function showStars() {
+function showStars() {
     if (moveCounter == 2) {
       stars.removeChild(stars.lastElementChild);
     } else if (moveCounter == 12) {
       stars.removeChild(stars.lastElementChild);
     }
 };
+//replay
+let replay = document.querySelector('.fa-repeat');
+
+replay.addEventListener('click', function(e) {
+  clearInterval(setTime);
+  gameOn();
+  checkingCards();
+});
 
 
 allCards.forEach(function(card) {
@@ -148,19 +154,11 @@ var totalSeconds = 0;
           }
         }
 
+
+
+
 };
 
-
-
-
-//replay
-let replay = document.querySelector('.fa-repeat');
-
-replay.addEventListener('click', function(e) {
-clearInterval(timer);
-gameOn();
-checkingCards();
-});
 
 
 //modal
@@ -180,12 +178,11 @@ function allCardsMatch (timer, secondsLabel, minutesLabel, moveCounter, stars) {
       time_results_minutes.innerHTML = minutes;
       time_results_seconds.innerHTML = seconds;
       stars_results.innerHTML = stars;
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
     }
-
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event, modal) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
