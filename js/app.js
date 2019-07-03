@@ -71,9 +71,9 @@ function checkingCards() {
 
   // Stars
 function showStars() {
-    if (moveCounter == 2) {
+    if (moveCounter == 8) {
       stars.removeChild(stars.lastElementChild);
-    } else if (moveCounter == 12) {
+    } else if (moveCounter == 16) {
       stars.removeChild(stars.lastElementChild);
     }
 };
@@ -123,7 +123,7 @@ allCards.forEach(function(card) {
             showStars(moveCounter);
 
           }
-          else if (cardPair === 2) {
+          else if (cardPair == 7) {
               allCardsMatch(timer, minutesLabel, secondsLabel, moveCounter, stars);
             }
 
@@ -159,25 +159,28 @@ var totalSeconds = 0;
 
 };
 
-
-
 //modal
 function allCardsMatch (timer, secondsLabel, minutesLabel, moveCounter, stars) {
       // Get the modal
-      console.log(moveCounter, stars, secondsLabel, minutesLabel);
+      //console.log(moveCounter, stars, secondsLabel, minutesLabel);
       clearInterval(timer);
+
       let modal = document.querySelector('.modal');
-      let seconds = secondsLabel;
-      let minutes = minutesLabel;
-      let time_results_minutes = document.querySelector('#time_results_minutes');
-      let time_results_seconds = document.querySelector('#time_results_seconds');
+      let seconds = secondsLabel.innerHTML;
+      let minutes = minutesLabel.innerHTML;
       let moves_results = document.querySelector('.moves_results');
-      let stars_results = document.querySelector('.stars_results');
+      //let stars_list = document.getElementsByClassName("stars").childNodes.length;
+      //let stars_results = document.querySelector(".stars_results");
+      //let stars_list = document.getElementsByClassName('stars');
+      //document.getElementsByClassName('stars_results').innerHTML = stars_list;
+      //let stars_list = document.getElementsByClassName("stars").childNodes.length;
+      //document.getElementsByClassName("stars_results").innerHTML = stars_list;
+
       modal.style.display = "block";
       moves_results.innerHTML = moveCounter;
       time_results_minutes.innerHTML = minutes;
       time_results_seconds.innerHTML = seconds;
-      stars_results.innerHTML = stars;
+      //stars_results.innerHTML = stars_list;
 
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
