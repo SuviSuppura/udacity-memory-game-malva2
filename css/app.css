@@ -33,6 +33,11 @@ h1 {
     font-weight: 300;
 }
 
+.button_play {
+  height: 30px;
+  cursor: pointer;
+  font-size: 15px;
+}
 /*
  * Styles for the deck of cards
  */

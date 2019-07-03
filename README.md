@@ -1,8 +1,5 @@
 # Memory Game Project
 
-## My additions
-I have used in this project and learning process several blogs and websites, also Mike's and Ryan's YouTube guides, plus help with Udacity Mentor.
-
 ## Table of Contents
 
 * [Instructions](#instructions)

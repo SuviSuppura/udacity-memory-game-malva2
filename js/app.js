@@ -22,7 +22,7 @@
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-      var currentIndex = array.length, temporaryValue, randomIndex;
+      let currentIndex = array.length, temporaryValue, randomIndex;
 
       while (currentIndex !== 0) {
           randomIndex = Math.floor(Math.random() * currentIndex);
@@ -71,7 +71,7 @@ function checkingCards() {
 
   // Stars
 function showStars() {
-    if (moveCounter == 8) {
+    if (moveCounter == 2) {
       stars.removeChild(stars.lastElementChild);
     } else if (moveCounter == 16) {
       stars.removeChild(stars.lastElementChild);
@@ -79,9 +79,9 @@ function showStars() {
 };
 //replay
 let replay = document.querySelector('.fa-repeat');
-
 replay.addEventListener('click', function(e) {
-  clearInterval(setTime);
+  clearInterval(timer);
+  showStars();
   gameOn();
   checkingCards();
 });
@@ -123,7 +123,7 @@ allCards.forEach(function(card) {
             showStars(moveCounter);
 
           }
-          else if (cardPair == 7) {
+          else if (cardPair == 2) {
               allCardsMatch(timer, minutesLabel, secondsLabel, moveCounter, stars);
             }
 
@@ -135,9 +135,9 @@ allCards.forEach(function(card) {
 });
 
 //timer
-var minutesLabel = document.getElementById("minutes");
-var secondsLabel = document.getElementById("seconds");
-var totalSeconds = 0;
+let minutesLabel = document.getElementById("minutes");
+let secondsLabel = document.getElementById("seconds");
+let totalSeconds = 0;
 
         function setTime() {
           ++totalSeconds;
@@ -146,7 +146,7 @@ var totalSeconds = 0;
         }
 
         function pad(val) {
-          var valString = val + "";
+          let valString = val + "";
           if (valString.length < 2) {
             return "0" + valString;
           } else {
@@ -154,33 +154,32 @@ var totalSeconds = 0;
           }
         }
 
-
-
-
 };
 
 //modal
 function allCardsMatch (timer, secondsLabel, minutesLabel, moveCounter, stars) {
       // Get the modal
-      //console.log(moveCounter, stars, secondsLabel, minutesLabel);
       clearInterval(timer);
-
       let modal = document.querySelector('.modal');
       let seconds = secondsLabel.innerHTML;
       let minutes = minutesLabel.innerHTML;
       let moves_results = document.querySelector('.moves_results');
-      //let stars_list = document.getElementsByClassName("stars").childNodes.length;
-      //let stars_results = document.querySelector(".stars_results");
-      //let stars_list = document.getElementsByClassName('stars');
-      //document.getElementsByClassName('stars_results').innerHTML = stars_list;
-      //let stars_list = document.getElementsByClassName("stars").childNodes.length;
-      //document.getElementsByClassName("stars_results").innerHTML = stars_list;
+      let stars_results = document.querySelector('.stars_results')
 
       modal.style.display = "block";
       moves_results.innerHTML = moveCounter;
       time_results_minutes.innerHTML = minutes;
       time_results_seconds.innerHTML = seconds;
-      //stars_results.innerHTML = stars_list;
+      stars_results.innerHTML = stars.children.length;
+
+      //play again button
+      let playAgainButton = document.querySelector('.button_play');
+      playAgainButton.addEventListener('click', function(e) {
+        clearInterval(timer);
+        gameOn();
+        checkingCards();
+        modal.style.display = "none";
+      });
 
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
