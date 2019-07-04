@@ -115,7 +115,7 @@ allCards.forEach(function(card) {
                       });
                 openCards = [];
 
-              }, 1000);
+              }, 500);
 
             }
             moveCounter++;
