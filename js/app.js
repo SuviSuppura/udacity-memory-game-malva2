@@ -71,7 +71,7 @@ function checkingCards() {
 
   // Stars
 function showStars() {
-    if (moveCounter == 2) {
+    if (moveCounter == 8) {
       stars.removeChild(stars.lastElementChild);
     } else if (moveCounter == 16) {
       stars.removeChild(stars.lastElementChild);
@@ -80,10 +80,7 @@ function showStars() {
 //replay
 let replay = document.querySelector('.fa-repeat');
 replay.addEventListener('click', function(e) {
-  clearInterval(timer);
-  showStars();
-  gameOn();
-  checkingCards();
+  location.reload(true);
 });
 
 
@@ -105,6 +102,9 @@ allCards.forEach(function(card) {
 
                   openCards = [];
                   cardPair++;
+                  if (cardPair == 8) {
+                      allCardsMatch(timer, minutesLabel, secondsLabel, moveCounter, stars);
+                    }
 
                 }
                 else {
@@ -123,9 +123,9 @@ allCards.forEach(function(card) {
             showStars(moveCounter);
 
           }
-          else if (cardPair == 2) {
-              allCardsMatch(timer, minutesLabel, secondsLabel, moveCounter, stars);
-            }
+          //else if (cardPair == 8) {
+            //  allCardsMatch(timer, minutesLabel, secondsLabel, moveCounter, stars);
+            //}
 
         }
 
@@ -175,9 +175,7 @@ function allCardsMatch (timer, secondsLabel, minutesLabel, moveCounter, stars) {
       //play again button
       let playAgainButton = document.querySelector('.button_play');
       playAgainButton.addEventListener('click', function(e) {
-        clearInterval(timer);
-        gameOn();
-        checkingCards();
+        location.reload(true);
         modal.style.display = "none";
       });
 
