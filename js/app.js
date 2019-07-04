@@ -123,9 +123,6 @@ allCards.forEach(function(card) {
             showStars(moveCounter);
 
           }
-          //else if (cardPair == 8) {
-            //  allCardsMatch(timer, minutesLabel, secondsLabel, moveCounter, stars);
-            //}
 
         }
 
