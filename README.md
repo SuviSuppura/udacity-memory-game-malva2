@@ -4,8 +4,8 @@
 
 * [Instructions](#instructions)
 * [Contributing](#contributing)
-* [Game details](#game details)
-* [My sources](#my sources)
+* [Game details](#game_details)
+* [My sources](#my_sources)
 
 ## Instructions
 
